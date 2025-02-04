@@ -4,21 +4,21 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 def create_playground_dashboard(df):
-    # Define colors for each asset type
+    # Define colors for each asset type with brighter colors for dark theme
     asset_colors = {
         asset: color for asset, color in zip(
             df['Asset'].unique(),
             [
-                '#1f77b4',  # blue
-                '#ff7f0e',  # orange
-                '#2ca02c',  # green
-                '#d62728',  # red
-                '#9467bd',  # purple
-                '#8c564b',  # brown
-                '#e377c2',  # pink
-                '#7f7f7f',  # gray
-                '#bcbd22',  # yellow-green
-                '#17becf'   # cyan
+                '#00b4d8',  # bright blue
+                '#ffd60a',  # bright yellow
+                '#72efdd',  # turquoise
+                '#ff6b6b',  # coral
+                '#c77dff',  # bright purple
+                '#ff9e00',  # orange
+                '#ff0075',  # pink
+                '#00f5d4',  # cyan
+                '#fee440',  # yellow
+                '#7209b7'   # purple
             ]
         )
     }
@@ -65,7 +65,7 @@ def create_playground_dashboard(df):
             marker=dict(
                 size=15,
                 color=asset_colors[asset],
-                line=dict(color='white', width=1)
+                line=dict(color='#1f1f1f', width=1)
             ),
             name=asset
         ), row=2, col=1)
@@ -98,14 +98,19 @@ def create_playground_dashboard(df):
         marker_color=[asset_colors[asset] for asset in df['Asset']]
     ), row=3, col=2)
 
-    # Update layout with consistent styling
+    # Update layout with dark theme
     fig.update_layout(
         height=1500,
         title_text='Speelvoorzieningen Kosten Analyse',
         showlegend=True,
-        plot_bgcolor='white',
-        paper_bgcolor='white',
-        font=dict(family="Arial", size=12),
+        template="plotly_dark",
+        paper_bgcolor='#1f1f1f',
+        plot_bgcolor='#1f1f1f',
+        font=dict(
+            family="Arial",
+            size=12,
+            color='white'
+        ),
     )
     
     # Update axes labels and styling
@@ -114,16 +119,18 @@ def create_playground_dashboard(df):
             fig.update_xaxes(
                 showgrid=True,
                 gridwidth=1,
-                gridcolor='#f0f0f0',
+                gridcolor='#2f2f2f',
                 row=i,
-                col=j
+                col=j,
+                color='white'
             )
             fig.update_yaxes(
                 showgrid=True,
                 gridwidth=1,
-                gridcolor='#f0f0f0',
+                gridcolor='#2f2f2f',
                 row=i,
-                col=j
+                col=j,
+                color='white'
             )
     
     # Update specific axis labels
